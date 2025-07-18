@@ -26,6 +26,8 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const adminUrl = import.meta.env.VITE_ADMIN_URL;
+
   return (
     <div className="flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400 px-4 md:px-10">
       {/* Logo */}
@@ -84,7 +86,7 @@ const Navbar = () => {
       <div className="flex items-center gap-4 relative">
         {/* Admin/Doctor Login Button */}
         <a
-          href="http://localhost:5174/"
+          href={adminUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="hidden md:inline-block bg-gradient-to-r from-primary to-blue-500 text-white px-4 py-2 rounded-full font-medium shadow hover:from-blue-500 hover:to-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
@@ -220,7 +222,7 @@ const Navbar = () => {
           {/* Mobile Admin/Doctor Login Button */}
           <div className="flex justify-center mt-6 px-5">
             <a
-              href="http://localhost:5174/"
+              href={adminUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full text-center bg-gradient-to-r from-primary to-blue-500 text-white px-4 py-2 rounded-full font-medium shadow hover:from-blue-500 hover:to-primary transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
