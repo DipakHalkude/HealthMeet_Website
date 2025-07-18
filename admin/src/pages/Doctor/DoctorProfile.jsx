@@ -5,35 +5,39 @@ import { toast } from "react-toastify";
 import axios from 'axios';
 
 const DoctorProfile = () => {
-  const { dToken, getProfileData, profileData, setProfileData ,backendUrl} =
+  const { dToken, getProfileData, profileData, setProfileData ,backendUrl,setLoading} =
     useContext(DoctorContext);
   const { currency } = useContext(AppContext);
   const [isEdit, setIsEdit] = useState(false);
 
   const updateProfile=async()=>{
-   try{
-     const updateData={
-      address:profileData.address,
-      fees:profileData.fees,
-      available:profileData.available
-     }
+    setLoading(true);
+    try{
+      const updateData={
+       address:profileData.address,
+       fees:profileData.fees,
+       available:profileData.available
+      }
 
-     const {data}=await axios.post(backendUrl+'/api/doctor/update-profile',updateData,{headers:{dToken}});
-     if(data.success)
-     {
-      toast.success(data.message);
-      setIsEdit(false);
-      getProfileData();
-     }
-     else
-     {
-      toast.error(data.message);
-     }
-   }catch(error)
-   {
-     toast.error(error.message);
-     console.log(error);
-   }
+      const {data}=await axios.post(backendUrl+'/api/doctor/update-profile',updateData,{headers:{dToken}});
+      if(data.success)
+      {
+       toast.success(data.message);
+       setIsEdit(false);
+       getProfileData();
+      }
+      else
+      {
+       toast.error(data.message);
+      }
+    }catch(error)
+    {
+      toast.error(error.message);
+      console.log(error);
+    }
+    finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {

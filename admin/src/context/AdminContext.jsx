@@ -17,12 +17,11 @@ const AdminContextProvider = ({ children }) => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const getAllDoctors = async () => {
+    setLoading(true);
     try {
-      const { data } = await axios.post(
-        backendUrl + "/api/admin/all-doctors",
-        {},
-        { headers: { atoken: aToken } }
-      );
+      const { data } = await axios.get(backendUrl + "/api/admin/doctors", {
+        headers: { atoken: aToken },
+      });
       if (data.success) {
         setDoctors(data.doctors);
         console.log(data.doctors);
@@ -31,6 +30,8 @@ const AdminContextProvider = ({ children }) => {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,6 +54,7 @@ const AdminContextProvider = ({ children }) => {
   };
 
   const getAllAppointments = async () => {
+    setLoading(true);
     try {
       const { data } = await axios.get(backendUrl + "/api/admin/appointments", {
         headers: { atoken: aToken },
@@ -65,6 +67,8 @@ const AdminContextProvider = ({ children }) => {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -86,7 +90,8 @@ const AdminContextProvider = ({ children }) => {
     }
   };
 
-  const getDashData = async () => {
+  const getDashboardData = async () => {
+    setLoading(true);
     try {
       const { data } = await axios.get(backendUrl + "/api/admin/dashboard", {
         headers: { atoken: aToken },
@@ -99,6 +104,8 @@ const AdminContextProvider = ({ children }) => {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
   const value = {
@@ -115,7 +122,7 @@ const AdminContextProvider = ({ children }) => {
     getAllAppointments,
     cancelAppointment,
     dashData,
-    getDashData,
+    getDashboardData,
   };
 
   return (
