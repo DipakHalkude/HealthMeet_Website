@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 
-  const {backendUrl,token,setToken}=useContext(AppContext)
+  const {backendUrl,token,setToken,setLoading}=useContext(AppContext)
   const navigate=useNavigate();
 
   const [state, setState] = useState("Sign Up");
@@ -17,7 +17,7 @@ const Login = () => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-
+    setLoading(true);
     try{
      if(state==='Sign Up')
      {
@@ -49,6 +49,9 @@ const Login = () => {
     catch(error)
     {
       toast.error(error.message);
+    }
+    finally {
+      setLoading(false);
     }
   };
 

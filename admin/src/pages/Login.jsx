@@ -10,7 +10,7 @@ import { DoctorContext } from '../context/DoctorContext';
 const Login = () => {
 
   const [state,setState]=useState('Admin');
-  const {setAToken,backendUrl}=useContext(AdminContext);
+  const {setAToken,backendUrl, setLoading}=useContext(AdminContext);
   const {setDToken}=useContext(DoctorContext);
 
   const [email,setEmail]=useState('');
@@ -18,7 +18,7 @@ const Login = () => {
   
   const onSubmitHandler= async(event)=>{
     event.preventDefault();
-
+    setLoading(true);
     try{
       if(state==='Admin'){
           const {data}=await axios.post(backendUrl+'/api/admin/login',{email,password});
@@ -55,6 +55,9 @@ const Login = () => {
     catch(error) {
       // Optionally, show a toast or log the error
       console.error(error);
+    }
+    finally {
+      setLoading(false);
     }
   }
 

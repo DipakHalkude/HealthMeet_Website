@@ -21,12 +21,13 @@ const AddDoctor = () => {
   const [address1,setAddress1]=useState('');
   const [address2,setAddress2]=useState('');
 
-  const {backendUrl,aToken}=useContext(AdminContext);
+  const { aToken, backendUrl, setLoading } = useContext(AdminContext);
 
 
   const onSubmiHandler= async(event)=>{
     event.preventDefault();
 
+    setLoading(true);
     try{
      if(!docImg)
      {
@@ -73,6 +74,8 @@ const AddDoctor = () => {
     }catch(error){
      toast.error(error.message);
      console.log(error);
+    } finally {
+      setLoading(false);
     }
   }
 

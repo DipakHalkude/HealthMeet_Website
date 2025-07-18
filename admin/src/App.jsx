@@ -3,6 +3,7 @@ import Login from './pages/Login';
 import { ToastContainer} from 'react-toastify';
 import { useContext } from 'react';
 import { AdminContext } from './context/AdminContext';
+import LoadingOverlay from './components/LoadingOverlay';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
 import {Routes,Route} from 'react-router-dom';
@@ -20,10 +21,12 @@ import DoctorProfile from './pages/Doctor/DoctorProfile';
 const App = () => {
   const {aToken}=useContext(AdminContext);
   const {dToken}=useContext(DoctorContext);
+  const { loading } = useContext(AdminContext);
 
   return aToken || dToken ? (
     <div className='br-[#F8F9FD]'>
      <ToastContainer/>
+     {loading && <LoadingOverlay />}
      <Navbar/>
      <div className='flex items-start'>
       <Sidebar/>

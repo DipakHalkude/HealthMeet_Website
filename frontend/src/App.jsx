@@ -12,11 +12,16 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { ToastContainer} from 'react-toastify';
 import { Navigate } from "react-router-dom";
+import { useContext } from "react";
+import { AppContext } from "./context/AppContext";
+import LoadingOverlay from "./components/LoadingOverlay";
 
 
 const App = () => {
+  const { loading } = useContext(AppContext);
   return (
     <div className="mx-4 sm:mx-[10%]">
+      {loading && <LoadingOverlay />}
       <ToastContainer/>
       <Navbar/>
       <Routes>

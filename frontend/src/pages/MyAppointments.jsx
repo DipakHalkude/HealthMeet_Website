@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const USD_TO_INR = 83; // Fixed conversion rate for demo
 
 const MyAppointments = () => {
-  const { backendUrl, token, userData, getDoctorsData } =
+  const { backendUrl, token, userData, getDoctorsData, setLoading } =
     useContext(AppContext);
   const [appointments, setAppointments] = useState([]);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -49,6 +49,7 @@ const MyAppointments = () => {
   };
 
   const getUserAppointments = async () => {
+    setLoading(true);
     try {
       const { data } = await axios.get(backendUrl + "/api/user/appointments", {
         headers: { token },
@@ -58,10 +59,13 @@ const MyAppointments = () => {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   const cancelAppointment = async (appointmentId) => {
+    setLoading(true);
     try {
       const { data } = await axios.post(
         backendUrl + "/api/user/cancel-appointment",
@@ -77,10 +81,13 @@ const MyAppointments = () => {
       }
     } catch (error) {
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   const appointmentPaypal = async (appointmentId) => {
+    setLoading(true);
     try {
       setLoadingPayment(true);
       const { data } = await axios.post(
@@ -122,10 +129,12 @@ const MyAppointments = () => {
       toast.error(error.message);
     } finally {
       setLoadingPayment(false);
+      setLoading(false);
     }
   };
 
   const verifyPaypal = async (PayPal_Payment_ID, orderData) => {
+    setLoading(true);
     try {
       const { data } = await axios.post(
         backendUrl + "/api/user/verify-paypal",
@@ -142,6 +151,8 @@ const MyAppointments = () => {
     } catch (error) {
       console.log(error);
       toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 

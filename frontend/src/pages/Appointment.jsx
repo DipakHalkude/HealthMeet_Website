@@ -8,7 +8,7 @@ import axios from "axios";
 
 const Appointments = () => {
   const { docId } = useParams();
-  const { doctors, currencySymbol,backendUrl,token,getDoctorsData, userData } = useContext(AppContext);
+  const { doctors, currencySymbol,backendUrl,token,getDoctorsData, userData, setLoading } = useContext(AppContext);
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
   const navigate=useNavigate();
@@ -99,6 +99,7 @@ const Appointments = () => {
       return;
     }
 
+    setLoading(true);
     try{
      const date=docSlots[slotIndex][0].datetime;
 
@@ -136,6 +137,9 @@ const Appointments = () => {
     {
       console.log(error);
       toast.error(error.message);
+    }
+    finally {
+      setLoading(false);
     }
   }
 

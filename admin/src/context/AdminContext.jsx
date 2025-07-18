@@ -12,6 +12,7 @@ const AdminContextProvider = ({ children }) => {
   const [doctors, setDoctors] = useState([]);
   const [appointments, setAppointments] = useState([]);
   const [dashData, setDashData] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -104,6 +105,8 @@ const AdminContextProvider = ({ children }) => {
     aToken,
     setAToken,
     backendUrl,
+    loading,
+    setLoading,
     doctors,
     getAllDoctors,
     changeAvailablity,

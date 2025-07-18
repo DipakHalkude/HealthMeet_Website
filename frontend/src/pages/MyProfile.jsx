@@ -11,6 +11,7 @@ const Profile = () => {
     token,
     backendUrl,
     loadUserProfileData,
+    setLoading,
   } = useContext(AppContext);
 
   const [isEdit, setIsEdit] = useState(false);
@@ -22,6 +23,7 @@ const Profile = () => {
       return;
     }
 
+    setLoading(true);
     try {
       const formData = new FormData();
       formData.append("name", userData.name);
@@ -48,6 +50,9 @@ const Profile = () => {
     } catch (error) {
       console.error(error);
       toast.error(error.message);
+    }
+    finally {
+      setLoading(false);
     }
   };
 
