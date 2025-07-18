@@ -220,6 +220,7 @@ const Navbar = () => {
             </NavLink>
           </ul>
           {/* Mobile Create Account Button */}
+          {!token && (
           <div className="flex justify-center mt-4 px-5 md:hidden">
             <button
               onClick={() => { setShowMenu(false); navigate('/login'); }}
@@ -228,6 +229,7 @@ const Navbar = () => {
               Create Account
             </button>
           </div>
+          )}
           {/* End Mobile Create Account Button */}
           {/* Mobile Admin/Doctor Login Button */}
           <div className="flex justify-center mt-6 px-5">
