@@ -11,7 +11,7 @@ const Login = () => {
 
   const [state,setState]=useState('Admin');
   const {setAToken,backendUrl, setLoading}=useContext(AdminContext);
-  const {setDToken, setLoading: setDoctorLoading} = useContext(DoctorContext);
+  const {setDToken}=useContext(DoctorContext);
 
   const [email,setEmail]=useState('');
   const [password,setPassword]=useState('');
@@ -19,7 +19,6 @@ const Login = () => {
   const onSubmitHandler= async(event)=>{
     event.preventDefault();
     setLoading(true);
-    setDoctorLoading(true);
     try{
       if(state==='Admin'){
           const {data}=await axios.post(backendUrl+'/api/admin/login',{email,password});
@@ -59,7 +58,6 @@ const Login = () => {
     }
     finally {
       setLoading(false);
-      setDoctorLoading(false);
     }
   }
 
