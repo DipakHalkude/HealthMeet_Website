@@ -1,5 +1,7 @@
 # HealthMeet Website
 
+[Live Website](https://health-meet-website-whole.vercel.app/)
+
 A full-stack web application for healthcare appointment management, featuring separate portals for users, doctors, admins, and a backend API.
 
 ## Project Structure
@@ -50,3 +52,18 @@ HealthMeet_Website/
 ---
 
 For more details, see the README in each folder. 
+
+## Screenshots
+
+### Home Page
+![Home Page](screenshots/homepage.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/admin_dashboard.png) 
+
+### Doctor Dashboard
+![Doctor Dashboard](screenshots/doctor_dashboard.png) 
+
+## Live Demo
+
+Check out the live website: [https://health-meet-website-whole.vercel.app/](https://health-meet-website-whole.vercel.app/) 
