@@ -11,7 +11,7 @@ node server.js
 
 ## Environment Variables
 - `MONGODB_URL`: MongoDB connection string
-- `CLOUDINARY_URL`: Cloudinary config (if used)
+- `CLOUDINARY_URL`: Cloudinary config
 - Any other secrets required by your app
 
 ## Features
