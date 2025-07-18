@@ -219,6 +219,16 @@ const Navbar = () => {
               CONTACT
             </NavLink>
           </ul>
+          {/* Mobile Create Account Button */}
+          <div className="flex justify-center mt-4 px-5 md:hidden">
+            <button
+              onClick={() => { setShowMenu(false); navigate('/login'); }}
+              className="w-full text-center bg-primary text-white px-4 py-2 rounded-full font-medium shadow hover:bg-blue-600 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
+            >
+              Create Account
+            </button>
+          </div>
+          {/* End Mobile Create Account Button */}
           {/* Mobile Admin/Doctor Login Button */}
           <div className="flex justify-center mt-6 px-5">
             <a
